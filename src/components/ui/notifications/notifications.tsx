@@ -1,8 +1,17 @@
+import { useEffect } from 'react';
 import { Notification } from './notification';
 import { useNotifications } from './notifications-store';
 
 export const Notifications = () => {
   const { notifications, dismissNotification } = useNotifications();
+
+  useEffect(() => {
+    notifications.map((notification) => {
+      setTimeout(() => {
+        dismissNotification(notification.id);
+      }, 3500);
+    });
+  }, [notifications]);
 
   return (
     <div
